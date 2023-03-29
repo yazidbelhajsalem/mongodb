@@ -1,0 +1,46 @@
+use contact
+db.createCollection("contactlist")
+db.contactlist.insertMany([
+  {
+    lastName: "Ben Lahmer",
+    firstName: "Fares",
+    email: "fares@gmail.com",
+    age: 26
+  },
+  {
+    lastName: "Kefi",
+    firstName: "Seif",
+    email: "kefi@gmail.com",
+    age: 15
+  },
+  {
+    lastName: "Fatnassi",
+    firstName: "Sarra",
+    email: "sarra.f@gmail.com",
+    age: 40
+  },
+  {
+    lastName: "Ben Yahia",
+    firstName: "Rym",
+    age: 4
+  },
+  {
+    lastName: "Cherif",
+    firstName: "Sami",
+    age: 3
+  }
+])
+
+db.contactlist.find()
+
+db.contactlist.findOne({_id: ObjectId("6421ff4317835a4e0c6a78ed")})
+
+db.contactlist.find({age: {$gt: 18}})
+
+db.contactlist.find({$and: [{age: {$gt: 18}}, {lastName: /ah/i}]})
+
+db.contactlist.updateOne({firstName: "Seif", lastName: "Kefi"}, {$set: {firstName: "Anis"}})
+
+db.contactlist.deleteMany({age: {$lt: 5}})
+
+db.contactlist.find()
